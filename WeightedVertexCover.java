@@ -33,8 +33,6 @@ public class WeightedVertexCover{
 			visited[i] = false;
 		}
 		
-		LinkedList<Integer> weightedvertexCover = new LinkedList<Integer>(); 
-
 		Iterator<Integer> i;
 
 		// Consider all edges one by one
@@ -74,38 +72,44 @@ public class WeightedVertexCover{
 	}
 
 	public static void main(String args[])	{
-		WeightedVertexCover g = new WeightedVertexCover(4);
-//		g.addEdge(0,2);
-//		g.addEdge(2,3);
-//		g.addEdge(0,1);
-//		g.addEdge(0,3);
-//		g.addEdge(1,2);
-//		
-//		int[] weights = {2,4,9,2};
-//		g.printVertexCover(weights);
+		System.out.println("Graph 1");
+		// WeightedVertexCover graph1 = new WeightedVertexCover(4);
+		// graph1.addEdge(0,1);
+		// graph1.addEdge(0,2);
+		// graph1.addEdge(0,3);
+		// graph1.addEdge(1,3);
+		// graph1.addEdge(3,2);
 		
-		
-		// g = new WeightedVertexCover(4);
-		// g.addEdge(0,1);
-		// g.addEdge(0,2);
-		// g.addEdge(0,3);
-		// g.addEdge(1,3);
-		// g.addEdge(3,2);
-		
-		// int[] weights = {4,3,3,5};
-		// g.printVertexCover(weights);
+		int[] weights = {4,3,3,5};
+		// graph1.printVertexCover(weights);
+		//Opimal = 0, 2 (weight = 2+9 = 11)
 
-		g = new WeightedVertexCover(6);
-		g.addEdge(0,5);
-		g.addEdge(1,2);
-		g.addEdge(2,4);
-		g.addEdge(2,3);
-		g.addEdge(0,1);
-		g.addEdge(4,5);
-		g.addEdge(1,3);
+
+		// System.out.println("\nGraph 2");
+		// WeightedVertexCover graph2 = new WeightedVertexCover(4);
+		// graph2.addEdge(0,2);
+		// graph2.addEdge(2,3);
+		// graph2.addEdge(0,1);
+		// graph2.addEdge(0,3);
+		// graph2.addEdge(1,2);
 		
-		int[] weights = {2,3,4,5,7,9};
-		g.printVertexCover(weights);
-		//optimal = 0,2,5 = 2+4+9=16
+		// weights = new int[]{2,4,9,2};
+		// graph2.printVertexCover(weights);
+		// Optimal = 0, 2 (weight = 5+5 = 9)
+		
+		
+		System.out.println("\nGraph 3");
+		WeightedVertexCover graph3 = new WeightedVertexCover(6);
+		graph3.addEdge(0,5);
+		graph3.addEdge(1,2);
+		graph3.addEdge(2,4);
+		graph3.addEdge(2,3);
+		graph3.addEdge(0,1);
+		graph3.addEdge(4,5);
+		graph3.addEdge(1,5);
+		
+		weights = new int[]{2,3,4,5,7,9};
+		graph3.printVertexCover(weights);
+		//optimal = 0,2,5 (weight = 2+4+9=16)
 	}
 }
