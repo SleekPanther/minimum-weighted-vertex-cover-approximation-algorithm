@@ -7,7 +7,7 @@ public class WeightedVertexCover{
 	public WeightedVertexCover(int vertexCount){
 		this.vertexCount = vertexCount;
 		graph = new LinkedList[vertexCount];
-		for (int i=0; i<vertexCount; ++i){
+		for(int i=0; i<vertexCount; ++i){
 			graph[i] = new LinkedList<Integer>();
 		}
 	}
@@ -35,23 +35,22 @@ public class WeightedVertexCover{
 
 		// Consider all edges one by one
 		for (int u=0; u<vertexCount; u++){
-			// An edge is only picked when both visited[u] and visited[v] are false
-			//if (visited[u] == false){
+			// Pick edge if both vertices have remaining weight > 0
 			if(remainingWeights[u]>0){
-				// Go through all adjacents of u and pick the first not yet visited vertex (We are basically picking an edge (u, v) from remaining edges.
+				// Go through all adjacents of u and pick the first with remaining weight > 0 (Basically picking an edge (u, v) from remaining edges)
 				iterator = graph[u].iterator();
 				while (iterator.hasNext()){
 					int v = iterator.next();
-					//if (visited[v] == false){
 					if(remainingWeights[v]>0){
-						// Add the vertices (u, v) to the result set. We make the vertex u and v visited so that all edges from/to them would be ignored
+						// Visit both edges to say they're included in the vertex cover
 						visited[v] = true;
 						visited[u] = true;
+						//Update the remaining weights by maxing out the one with the smaller remaining weight
 						int smallerWeight = Math.min(remainingWeights[u], remainingWeights[v]);
 						remainingWeights[u] -= smallerWeight;
 						remainingWeights[v] -= smallerWeight;
 						System.out.println("Chose Edge "+u+"-->"+v+"  (Edge paid weight="+smallerWeight+")");
-						break;
+						break;		//stop looking for adjacent vertices once we find an edge
 					}
 				}
 			}
@@ -81,32 +80,32 @@ public class WeightedVertexCover{
 
 	public static void main(String args[])	{
 		System.out.println("Graph 1");
-		// WeightedVertexCover graph1 = new WeightedVertexCover(4);
-		// graph1.addEdge(0,1);
-		// graph1.addEdge(0,2);
-		// graph1.addEdge(0,3);
-		// graph1.addEdge(1,3);
-		// graph1.addEdge(3,2);
+		WeightedVertexCover graph1 = new WeightedVertexCover(4);
+		graph1.addEdge(0,1);
+		graph1.addEdge(0,2);
+		graph1.addEdge(0,3);
+		graph1.addEdge(1,3);
+		graph1.addEdge(3,2);
 		
 		int[] weights = {4,3,3,5};
-		// graph1.printWeightedVertexCover(weights);
+		graph1.printWeightedVertexCover(weights);
 		//Opimal = 0, 2 (weight = 2+9 = 11)
 
 
-		// System.out.println("\nGraph 2");
-		// WeightedVertexCover graph2 = new WeightedVertexCover(4);
-		// graph2.addEdge(0,2);
-		// graph2.addEdge(2,3);
-		// graph2.addEdge(0,1);
-		// graph2.addEdge(0,3);
-		// graph2.addEdge(1,2);
+		System.out.println("\n\nGraph 2");
+		WeightedVertexCover graph2 = new WeightedVertexCover(4);
+		graph2.addEdge(0,2);
+		graph2.addEdge(2,3);
+		graph2.addEdge(0,1);
+		graph2.addEdge(0,3);
+		graph2.addEdge(1,2);
 		
-		// weights = new int[]{2,4,9,2};
-		// graph2.printWeightedVertexCover(weights);
+		weights = new int[]{2,4,9,2};
+		graph2.printWeightedVertexCover(weights);
 		// Optimal = 0, 2 (weight = 5+5 = 9)
 		
 		
-		System.out.println("\nGraph 3");
+		System.out.println("\n\nGraph 3");
 		WeightedVertexCover graph3 = new WeightedVertexCover(6);
 		graph3.addEdge(0,5);
 		graph3.addEdge(1,2);
