@@ -18,14 +18,12 @@ public class WeightedVertexCover{
 		graph[w].add(v);
 	}
 
-	public void printVertexCover(int[] originalWeights){
+	public void printWeightedVertexCover(int[] originalWeights){
 		//Copy weights to preserve original weights when printing at the end
 		int[] remainingWeights = new int[originalWeights.length];
 		for(int i=0 ;i<remainingWeights.length; i++){
 			remainingWeights[i]=originalWeights[i];
 		}
-		
-		System.out.println(Arrays.toString(graph));
 	
 		// Initialize all vertices as un-visited.
 		boolean visited[] = new boolean[vertexCount];
@@ -33,7 +31,7 @@ public class WeightedVertexCover{
 			visited[i] = false;
 		}
 		
-		Iterator<Integer> i;
+		Iterator<Integer> iterator;
 
 		// Consider all edges one by one
 		for (int u=0; u<vertexCount; u++){
@@ -41,9 +39,9 @@ public class WeightedVertexCover{
 			//if (visited[u] == false){
 			if(remainingWeights[u]>0){
 				// Go through all adjacents of u and pick the first not yet visited vertex (We are basically picking an edge (u, v) from remaining edges.
-				i = graph[u].iterator();
-				while (i.hasNext()){
-					int v = i.next();
+				iterator = graph[u].iterator();
+				while (iterator.hasNext()){
+					int v = iterator.next();
 					//if (visited[v] == false){
 					if(remainingWeights[v]>0){
 						// Add the vertices (u, v) to the result set. We make the vertex u and v visited so that all edges from/to them would be ignored
@@ -59,16 +57,26 @@ public class WeightedVertexCover{
 			}
 		}
 
-		int vertexCoverWeight=0;
-		System.out.println("\nVertices in the Vertex Cover");
+		//Find which nodes have been visited & print vertex cover
+		ArrayList<ArrayList<Integer>> vertexCover = new ArrayList<ArrayList<Integer>>();
+		System.out.print("\nVertices in the Vertex Cover:  ");
 		for (int j=0; j<vertexCount; j++){
 			if (visited[j]){
-				vertexCoverWeight+=originalWeights[j];
-				System.out.print(j+", ");
+				vertexCover.add(new ArrayList<Integer>(Arrays.asList(j, originalWeights[j])));
 			}
 		}
-		
-		System.out.println("\nTotal Weight of Vertex Cover="+vertexCoverWeight);
+		//Add the 1st vertex
+		System.out.print(+vertexCover.get(0).get(0));
+		int vertexCoverWeight=vertexCover.get(0).get(1);
+		String vertexCoverWeightsMath = vertexCover.get(0).get(1) + "";
+		//Now add remaining vertices to avoid trailing commas & + signs
+		for(int i=1; i<vertexCover.size(); i++){
+			System.out.print(", "+vertexCover.get(i).get(0));	//vertex id
+			int vertexWeight = vertexCover.get(i).get(1);
+			vertexCoverWeightsMath = vertexCoverWeightsMath + "+" + vertexWeight;
+			vertexCoverWeight += vertexWeight;	//vertex weight
+		}
+		System.out.println("\nTotal Weight of Vertex Cover: "+vertexCoverWeightsMath+" = "+vertexCoverWeight);
 	}
 
 	public static void main(String args[])	{
@@ -81,7 +89,7 @@ public class WeightedVertexCover{
 		// graph1.addEdge(3,2);
 		
 		int[] weights = {4,3,3,5};
-		// graph1.printVertexCover(weights);
+		// graph1.printWeightedVertexCover(weights);
 		//Opimal = 0, 2 (weight = 2+9 = 11)
 
 
@@ -94,7 +102,7 @@ public class WeightedVertexCover{
 		// graph2.addEdge(1,2);
 		
 		// weights = new int[]{2,4,9,2};
-		// graph2.printVertexCover(weights);
+		// graph2.printWeightedVertexCover(weights);
 		// Optimal = 0, 2 (weight = 5+5 = 9)
 		
 		
@@ -109,7 +117,7 @@ public class WeightedVertexCover{
 		graph3.addEdge(1,5);
 		
 		weights = new int[]{2,3,4,5,7,9};
-		graph3.printVertexCover(weights);
+		graph3.printWeightedVertexCover(weights);
 		//optimal = 0,2,5 (weight = 2+4+9=16)
 	}
 }
