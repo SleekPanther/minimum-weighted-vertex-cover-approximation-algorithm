@@ -13,7 +13,7 @@ public class WeightedVertexCover{
 	}
 
 	//Undirected graph, so adds link to 1st vertex in the 2nd's list & link to the 2nd in the 1st's list (represented twice)
-	public void addEdge(int v, int w)	{
+	public void addEdge(int v, int w){
 		graph[v].add(w);
 		graph[w].add(v);
 	}
@@ -80,20 +80,22 @@ public class WeightedVertexCover{
 
 	public static void main(String args[])	{
 		System.out.println("Graph 1");
-		WeightedVertexCover graph1 = new WeightedVertexCover(4);
+		int vertexCount = 4;
+		WeightedVertexCover graph1 = new WeightedVertexCover(vertexCount);
 		graph1.addEdge(0,1);
 		graph1.addEdge(0,2);
 		graph1.addEdge(0,3);
-		graph1.addEdge(1,3);
+		graph1.addEdge(1,2);
 		graph1.addEdge(3,2);
 		
 		int[] weights = {4,3,3,5};
 		graph1.printWeightedVertexCover(weights);
-		//Opimal = 0, 2 (weight = 2+9 = 11)
+		//Optimal = 0, 2 (Total weight = 4+5 = 9)
 
 
 		System.out.println("\n\nGraph 2");
-		WeightedVertexCover graph2 = new WeightedVertexCover(4);
+		vertexCount = 4;
+		WeightedVertexCover graph2 = new WeightedVertexCover(vertexCount);
 		graph2.addEdge(0,2);
 		graph2.addEdge(2,3);
 		graph2.addEdge(0,1);
@@ -102,11 +104,12 @@ public class WeightedVertexCover{
 		
 		weights = new int[]{2,4,9,2};
 		graph2.printWeightedVertexCover(weights);
-		// Optimal = 0, 2 (weight = 5+5 = 9)
+		//Optimal = 0, 1, 3 (Total weight = 2+4+2 = 8)
 		
 		
 		System.out.println("\n\nGraph 3");
-		WeightedVertexCover graph3 = new WeightedVertexCover(6);
+		vertexCount = 6;
+		WeightedVertexCover graph3 = new WeightedVertexCover(vertexCount);
 		graph3.addEdge(0,5);
 		graph3.addEdge(1,2);
 		graph3.addEdge(2,4);
@@ -117,6 +120,6 @@ public class WeightedVertexCover{
 		
 		weights = new int[]{2,3,4,5,7,9};
 		graph3.printWeightedVertexCover(weights);
-		//optimal = 0,2,5 (weight = 2+4+9=16)
+		//Optimal = 0,2,5 (Total weight = 2+4+9 = 16)
 	}
 }
