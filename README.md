@@ -1,5 +1,5 @@
 # Minimum Weighted Vertex Cover - Pricing Method (Approximation Algorithm)
-Approximation Algorithm for the NP-Complete problem of finding a **vertex cover of minimum weight** in a graph with weighted vertices. Guarantees an answers at most **2 times** the optimal minimum weighted vertex cover (2-approximation algorithm, [see references for the proof](#References)).
+Approximation Algorithm for the NP-Complete problem of finding a **vertex cover of minimum weight** in a graph with weighted vertices. Guarantees an answers at most **2 times** the optimal minimum weighted vertex cover (2-approximation algorithm, [see references for the proof](#references)).
 
 ## Problem Statement
 - Given a weighted graph with each vertex weighted > 0
@@ -31,8 +31,8 @@ The answer found is at most **2 times** the weight of the optimal Minimum Weight
 
 ### Pricing Strategy (Fairness)
 - Each edge ***e=(i,j)*** must pay a price > 0 to vertices **i** and **j**
-- **Fairness: ** an edge cannot pay more than the remaining weight of the vertex
-- **Tight: ** a vertex is tight when it has no remaining weight
+- **Fairness:** an edge cannot pay more than the remaining weight of the vertex
+- **Tight:** a vertex is tight when it has no remaining weight
 
 ## Input Graphs
 
