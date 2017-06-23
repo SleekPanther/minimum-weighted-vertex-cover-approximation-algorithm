@@ -78,7 +78,7 @@ public class WeightedVertexCover{
 		System.out.println("\nTotal Weight of Vertex Cover: "+vertexCoverWeightsMath+" = "+vertexCoverWeight);
 	}
 
-	public static void main(String args[])	{
+	public static void main(String args[]){
 		System.out.println("Graph 1");
 		int vertexCount = 4;
 		WeightedVertexCover graph1 = new WeightedVertexCover(vertexCount);
