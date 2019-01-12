@@ -47,17 +47,17 @@ Total Weight = 2+2+4 = 8
 </h4>
 
 
-#### Graph3
+#### Graph 3
 <img src="images/graph3.png" width="530">
 
-#### Graph3 Optimal Minimum Weighted Vertex Cover
+#### Graph 3 Optimal Minimum Weighted Vertex Cover
 <img src="images/graph3-optimal-vertex-cover.png" width="530">
 
 <h4>Vertex Cover = a, c, f <br>
 Total Weight = 2+4+9 = 15
 </h4>
 
-#### Graph3 Algorithm's Weighted Vertex Cover (sub-optimal)
+#### Graph 3 Algorithm's Weighted Vertex Cover (sub-optimal)
 <img src="images/graph3-algorithm-vertex-cover.png" width="530">
 
 <h4>Vertex Cover = a, b, c, e <br>
